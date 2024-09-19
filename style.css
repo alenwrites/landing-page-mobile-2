@@ -1,0 +1,446 @@
+/* Global Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding and borders are included in the element's width */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body, h1, h2, h3, p, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Header Container */
+header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        nav {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: #444;
+            border-radius: 5px;
+            display: none;
+            flex-direction: column;
+            width: 80%;
+            max-width: 300px;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        nav a.active {
+            color: #ff6347;
+        }
+
+        nav a .dropdown-icon {
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        nav a.active .dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+
+/* Hero Section */
+#hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Full viewport height */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Ensures vertical alignment of content */
+    padding: 20px;
+    color: white;
+    text-align: center;
+    background-color: #000; /* Black background */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Ensure content is above the particles */
+}
+
+pointer-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ensure it stays behind the content */
+}
+
+.hero h1 {
+    font-size: 32px; /* Adjusted for mobile/tablet screens */
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.primary-button, .secondary-button {
+    display: block; /* Make buttons take full width */
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 10px 0; /* Vertical spacing between buttons */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.primary-button {
+    background-color: #ff6f61;
+    color: #fff;
+}
+
+.primary-button:hover {
+    background-color: #ff4e40;
+}
+
+.secondary-button {
+    background-color: #fff;
+    color: #333;
+}
+
+.secondary-button:hover {
+    background-color: #ff6f61;
+    color: #fff;
+}
+
+/* Mobile and Tablet Specific Styles */
+@media (max-width: 1024px) {
+    #hero-section {
+        min-height: 100vh; /* Adjust height for tablets and phones */
+        padding: 30px 20px;
+    }
+
+    .hero h1 {
+        font-size: 28px; /* Slightly smaller for phones */
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .primary-button, .secondary-button {
+        padding: 12px; /* Reduced padding for smaller screens */
+        font-size: 14px;
+    }
+}
+
+
+/* pain point */
+.card-container {
+    display: block; /* Stack cards vertically */
+    margin-bottom: 50px;
+    padding: 0 10px; /* Optional padding to give some space on the sides */
+    box-sizing: border-box; /* Include padding in the container's width */
+}
+
+.card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    margin-bottom: 20px; /* Space between cards */
+    width: 100%; /* Full width of the container */
+    box-sizing: border-box; /* Ensure padding is included in the card's width */
+}
+
+.card img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.card p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/*.card:hover {
+    transform: translateY(-10px);
+}*/
+
+
+/* Expertise Section for Mobile */
+.our-expertise {
+    padding: 40px 0; /* Reduced padding for mobile */
+    background: #f9f9f9;
+}
+
+.expertise-content {
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.expertise-item {
+    flex: 1 1 100%; /* Full width for each item on mobile */
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.expertise-item i {
+    font-size: 2.5rem; /* Slightly reduced icon size for mobile */
+    color: #ff6f61;
+    margin-bottom: 15px;
+}
+
+/* Add a media query to make these styles apply only to smaller screens */
+@media (min-width: 768px) {
+    /* Revert the styles for tablets and larger screens */
+    .expertise-content {
+        flex-direction: row; /* Row layout for larger screens */
+        flex-wrap: wrap; /* Allow wrapping */
+    }
+
+    .expertise-item {
+        flex: 1 1 45%; /* Two items per row for larger screens */
+    }
+
+    .expertise-item i {
+        font-size: 3rem; /* Restore original icon size */
+    }
+}
+
+
+
+/* About Us Section */
+.about {
+    padding: 50px 20px;
+    background-color: #fff;
+}
+
+.about-content {
+    text-align: center;
+}
+
+.about-text ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-text ul li {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.founder-bio img {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.founder-bio p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+
+/* Process Section */
+.process {
+    background-color: #f9f9f9;
+    padding: 80px 0;
+}
+
+.process h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 32px;
+}
+
+/* Vertically stack process steps */
+.process-steps {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;    /* Center the items */
+    gap: 20px;              /* Add some space between each item */
+}
+
+.process-step {
+    width: 90%;             /* Full width with some margin */
+    max-width: 500px;       /* Max width to keep it manageable on larger screens */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.process-icon {
+    font-size: 50px;
+    color: #ff6f61;
+    margin-bottom: 20px;
+}
+
+.process-step h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.process-step p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* .process-step:hover {
+    transform: translateY(-10px);
+} */
+
+
+/* CTA Section */
+.cta {
+    background-color: #222;
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.cta p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+.footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-logo img {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #fff;
+}
+
+.footer-social a {
+    margin: 0 5px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.footer-newsletter input[type="email"] {
+    width: 70%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.footer-newsletter button {
+    padding: 10px;
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.footer-legal ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.footer-legal ul li {
+    display: inline;
+    margin: 0 5px;
+}
+
+.footer-legal p {
+    font-size: 12px;
+    margin-top: 10px;
+    color: #bbb;
+}
