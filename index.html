@@ -486,21 +486,21 @@ pointer-particles {
     </section>
   <script>
       class PointerParticle {
-  constructor(spread, speed, component) {
+  constructor(spread, speed, component, touchPoint) {
     const { ctx, pointer, hue } = component;
 
     this.ctx = ctx;
-    this.x = pointer.x;
-    this.y = pointer.y;
-    this.mx = pointer.mx * 0.1;
-    this.my = pointer.my * 0.1;
-    this.size = Math.random() + 1; // Consistent size for all devices
-    this.decay = 0.01; // Same decay rate
-    this.speed = speed * 0.08; // Consistent speed
+    this.x = touchPoint.x;
+    this.y = touchPoint.y;
+    this.mx = touchPoint.mx * 0.1;
+    this.my = touchPoint.my * 0.1;
+    this.size = Math.random() + 1;
+    this.decay = 0.01;
+    this.speed = speed * 0.08;
     this.spread = spread * this.speed;
     this.spreadX = (Math.random() - 0.5) * this.spread - this.mx;
     this.spreadY = (Math.random() - 0.5) * this.spread - this.my;
-    this.color = `hsl(${hue}deg 90% 60%)`; // Consistent color hue
+    this.color = hsl(${hue}deg 90% 60%);
   }
 
   draw() {
@@ -535,7 +535,7 @@ class PointerParticles extends HTMLElement {
 
   static css = `
     :host {
-      display: block;
+      display: grid;
       width: 100%;
       height: 100%;
       pointer-events: none;
@@ -544,19 +544,15 @@ class PointerParticles extends HTMLElement {
 
   constructor() {
     super();
+
     this.canvas;
     this.ctx;
-    this.fps = 60; // Consistent FPS for all devices
+    this.fps = 60;
     this.msPerFrame = 1000 / this.fps;
     this.timePrevious;
     this.particles = [];
-    this.pointer = {
-      x: 0,
-      y: 0,
-      mx: 0,
-      my: 0
-    };
-    this.hue = 0; // Consistent hue changes for all devices
+    this.pointers = {};  // To store data for multiple touch points
+    this.hue = 0;
   }
 
   connectedCallback() {
@@ -579,38 +575,64 @@ class PointerParticles extends HTMLElement {
   }
 
   createParticles(event, { count, speed, spread }) {
-    this.setPointerValues(event);
-
-    for (let i = 0; i < count; i++) {
-      this.particles.push(new PointerParticle(spread, speed, this));
+    // Loop through each active touch point
+    for (const touchID in this.pointers) {
+      const touchPoint = this.pointers[touchID];
+      for (let i = 0; i < count; i++) {
+        this.particles.push(new PointerParticle(spread, speed, this, touchPoint));
+      }
     }
   }
 
   setPointerValues(event) {
     const rect = this.canvas.getBoundingClientRect();
-    this.pointer.x = (event.touches ? event.touches[0].clientX : event.clientX) - rect.left;
-    this.pointer.y = (event.touches ? event.touches[0].clientY : event.clientY) - rect.top;
-    this.pointer.mx = event.movementX || 0;
-    this.pointer.my = event.movementY || 0;
+
+    // Loop through all touches to update positions and calculate movements
+    Array.from(event.touches).forEach((touch) => {
+      const touchID = touch.identifier;
+
+      // Check if we already tracked this touch
+      if (!this.pointers[touchID]) {
+        this.pointers[touchID] = { x: 0, y: 0, mx: 0, my: 0 };
+      }
+
+      const pointer = this.pointers[touchID];
+      pointer.mx = touch.clientX - (pointer.x || touch.clientX); // Calculate movement
+      pointer.my = touch.clientY - (pointer.y || touch.clientY); // Calculate movement
+
+      pointer.x = touch.clientX - rect.left;  // Adjust for canvas position
+      pointer.y = touch.clientY - rect.top;   // Adjust for canvas position
+    });
   }
 
   setupEvents() {
     const parent = this.parentNode;
 
-    // Apply the same events for mobile and desktop (click and move)
-    parent.addEventListener("click", (event) => {
+    // Handle touch start for multiple touch points
+    parent.addEventListener("touchstart", (event) => {
+      this.setPointerValues(event);
       this.createParticles(event, {
-        count: 300, // Consistent particle count for both devices
+        count: 300,
         speed: Math.random() + 1,
         spread: Math.random() + 50
       });
     });
 
-    parent.addEventListener("mousemove", (event) => {
+    // Handle touch move for multiple touch points
+    parent.addEventListener("touchmove", (event) => {
+      event.preventDefault(); // Prevent default scrolling behavior
+      this.setPointerValues(event);
       this.createParticles(event, {
-        count: 20, // Consistent count during pointer move
+        count: 20,
         speed: this.getPointerVelocity(event),
         spread: 1
+      });
+    });
+
+    // Handle touch end and cleanup of touch points
+    parent.addEventListener("touchend", (event) => {
+      Array.from(event.changedTouches).forEach((touch) => {
+        delete this.pointers[touch.identifier]; // Remove finished touch points
       });
     });
 
@@ -618,11 +640,20 @@ class PointerParticles extends HTMLElement {
   }
 
   getPointerVelocity(event) {
-    const a = event.movementX || 0;
-    const b = event.movementY || 0;
-    const c = Math.floor(Math.sqrt(a * a + b * b));
+    let velocitySum = 0;
+    
+    Array.from(event.touches).forEach((touch) => {
+      const touchID = touch.identifier;
+      const pointer = this.pointers[touchID];
 
-    return c;
+      if (pointer) {
+        const a = pointer.mx;
+        const b = pointer.my;
+        velocitySum += Math.floor(Math.sqrt(a * a + b * b)); // Sum of velocities
+      }
+    });
+
+    return velocitySum / event.touches.length || 1; // Average velocity or default to 1
   }
 
   handleParticles() {
@@ -638,6 +669,7 @@ class PointerParticles extends HTMLElement {
 
   setCanvasDimensions() {
     const rect = this.parentNode.getBoundingClientRect();
+
     this.canvas.width = rect.width;
     this.canvas.height = rect.height;
   }
@@ -655,7 +687,7 @@ class PointerParticles extends HTMLElement {
     this.timePrevious = timeNow - excessTime;
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.hue = this.hue > 360 ? 0 : (this.hue += 3); // Consistent hue change
+    this.hue = this.hue > 360 ? 0 : (this.hue += 3);
 
     this.handleParticles();
   }
