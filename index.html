@@ -8,212 +8,309 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Global Styles */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Ensures padding and borders are included in the element's width */
-}
+       /* Global Styles */
 
 html {
     scroll-behavior: smooth;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* Applies box-sizing globally to avoid layout issues */
+}
+
 body, h1, h2, h3, p, a {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
 
 body {
     line-height: 1.6;
     color: #333;
+    font-size: 16px; /* Sets a base font size for consistent scaling */
 }
 
 .container {
     width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
+/* Anchor Tag */
 a {
     text-decoration: none;
-    color: #fff;
+    color: #333; /* Use a dark default for accessibility */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
-/* Header Container */
-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
-        }
+a:hover {
+    color: #ff6f61; /* Hover color for improved UX */
+}
 
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-        }
 
-        .hamburger {
-            font-size: 24px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
 
-        nav {
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background-color: #444;
-            border-radius: 5px;
-            display: none;
-            flex-direction: column;
-            width: 80%;
-            max-width: 300px;
-            padding: 10px 0;
-        }
+/* Header */
+.header {
+    background-color: #222;
+    padding: 15px 0;
+}
 
-        nav a {
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: color 0.3s ease;
-        }
+/* Container with flex layout for desktop */
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}
 
-        nav a:hover {
-            background-color: #555;
-        }
+.logo img {
+    width: 120px; /* Slightly smaller default width */
+}
 
-        nav a.active {
-            color: #ff6347;
-        }
+.navigation ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
 
-        nav a .dropdown-icon {
-            font-size: 16px;
-            transition: transform 0.3s ease;
-        }
+.navigation ul li {
+    margin-left: 15px;
+}
 
-        nav a.active .dropdown-icon {
-            transform: rotate(180deg);
-        }
+.navigation ul li a {
+    color: #fff;
+    font-weight: 600;
+    transition: color 0.3s;
+}
 
+.navigation ul li a:hover {
+    color: #ff6f61;
+}
+
+.cta-button {
+    padding: 8px 16px;
+    background-color: #ff6f61;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    color: #fff;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    background-color: #ff4e40;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 20px;
+        text-align: center;
+    }
+
+    .logo img {
+        width: 100px; /* Smaller logo for mobile */
+        margin-bottom: 10px;
+    }
+
+    .navigation ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .navigation ul li {
+        margin-left: 0; /* Reset margin for stacking vertically */
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        margin-top: 10px;
+        font-size: 16px;
+        width: 100%; /* Full width on mobile */
+        text-align: center;
+    }
+}
 
 /* Hero Section */
 #hero-section {
     position: relative;
     width: 100%;
-    min-height: 100vh; /* Full viewport height */
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column; /* Ensures vertical alignment of content */
-    padding: 20px;
-    color: white;
     text-align: center;
-    background-color: #000; /* Black background */
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #333;
 }
 
+/* Center content with maximum width for responsiveness */
 .hero-content {
-    position: relative;
-    z-index: 2; /* Ensure content is above the particles */
+    max-width: 1200px;
+    width: 100%;
+    padding: 20px;
 }
 
-pointer-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Preheadline styling */
+.hero .preheadline {
+    font-size: 20px;
+    color: #ff6f61;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Main headline styling */
+.hero h1 {
+    font-size: 27px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* Subheading styling */
+.hero .subheading {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Video wrapper to make the video responsive */
+.hero-video-wrapper {
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 16 / 9;
+    margin: 20px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hero-video-wrapper iframe {
     width: 100%;
     height: 100%;
-    z-index: 1; /* Ensure it stays behind the content */
+    border: 0;
 }
 
-.hero h1 {
-    font-size: 32px; /* Adjusted for mobile/tablet screens */
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+/* Button container to center-align buttons and add spacing */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-.hero p {
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
+/* Button styling */
 .primary-button, .secondary-button {
-    display: block; /* Make buttons take full width */
-    width: 100%;
-    padding: 15px;
+    display: inline-block;
+    padding: 12px 25px;
     font-size: 16px;
     border-radius: 5px;
-    margin: 10px 0; /* Vertical spacing between buttons */
-    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+    font-weight: 600;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Primary button styling */
 .primary-button {
     background-color: #ff6f61;
-    color: #fff;
 }
 
 .primary-button:hover {
     background-color: #ff4e40;
+     color: #fff; /* Ensure text remains white */
 }
 
+/* Secondary button styling */
 .secondary-button {
-    background-color: #fff;
-    color: #333;
+    background-color: #333;
 }
 
 .secondary-button:hover {
-    background-color: #ff6f61;
-    color: #fff;
+    background-color: #555;
+     color: #fff; /* Ensure text remains white */
 }
 
-/* Mobile and Tablet Specific Styles */
-@media (max-width: 1024px) {
+/* Mobile Optimization */
+@media (max-width: 768px) {
     #hero-section {
-        min-height: 100vh; /* Adjust height for tablets and phones */
-        padding: 30px 20px;
+        padding: 15px;
+    }
+
+    /* Adjust font sizes for readability on smaller screens */
+    .hero .preheadline {
+        font-size: 18px;
+        margin-bottom: 10px;
     }
 
     .hero h1 {
-        font-size: 28px; /* Slightly smaller for phones */
+        font-size: 22px;
+        margin-bottom: 8px;
     }
 
-    .hero p {
-        font-size: 14px;
+    .hero .subheading {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    /* Video wrapper adjusts to mobile */
+    .hero-video-wrapper {
+        max-width: 100%;
+        margin: 15px auto;
+    }
+
+    /* Buttons stack vertically on mobile */
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
     }
 
     .primary-button, .secondary-button {
-        padding: 12px; /* Reduced padding for smaller screens */
+        width: 100%; /* Full-width buttons on mobile */
         font-size: 14px;
+        padding: 10px 20px;
+        text-align: center;
+    }
+
+    /* Add space between vertically stacked buttons */
+    .primary-button {
+        margin-bottom: 10px; /* Adjust spacing as needed */
     }
 }
 
 
-/* pain point */
+
+/* Pain Point Section */
+.pain-point-container {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+}
+
 .card-container {
-    display: block; /* Stack cards vertically */
-    margin-bottom: 50px;
-    padding: 0 10px; /* Optional padding to give some space on the sides */
-    box-sizing: border-box; /* Include padding in the container's width */
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .card {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 5px;
     text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
-    margin-bottom: 20px; /* Space between cards */
-    width: 100%; /* Full width of the container */
-    box-sizing: border-box; /* Ensure padding is included in the card's width */
+    width: 30%;
+    margin-bottom: 20px;
 }
 
 .card img {
@@ -233,80 +330,285 @@ pointer-particles {
     color: #666;
 }
 
-/*.card:hover {
+.card:hover {
     transform: translateY(-10px);
-}*/
-
-
-/* Expertise Section for Mobile */
-.our-expertise {
-    padding: 40px 0; /* Reduced padding for mobile */
-    background: #f9f9f9;
 }
 
-.expertise-content {
-    display: flex;
-    flex-direction: column; /* Stacks items vertically */
-    gap: 20px;
-    justify-content: space-between;
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .pain-point-container {
+        padding: 40px 0;
+    }
+
+    .card-container {
+        gap: 15px;
+    }
+
+    .card {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .card h3 {
+        font-size: 20px;
+    }
+
+    .card p {
+        font-size: 15px;
+    }
 }
 
-.expertise-item {
-    flex: 1 1 100%; /* Full width for each item on mobile */
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
+/* Why Choose Us Section */
+.Why_Choose_Us {
+    background-color: #fff;
+    padding: 60px 0;
+}
+
+.Why_Choose_Us_container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.Why_Choose_Us h2 {
     text-align: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    font-size: 28px; /* Slightly reduced for better fit on smaller screens */
 }
 
-.expertise-item i {
-    font-size: 2.5rem; /* Slightly reduced icon size for mobile */
+.Why_Choose_Us-steps {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Adds consistent spacing between steps */
+}
+
+.Why_Choose_Us-step {
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    width: 18%;
+    margin: 10px;
+}
+
+.Why_Choose_Us-icon {
+    font-size: 40px;
     color: #ff6f61;
     margin-bottom: 15px;
 }
 
-/* Add a media query to make these styles apply only to smaller screens */
-@media (min-width: 768px) {
-    /* Revert the styles for tablets and larger screens */
-    .expertise-content {
-        flex-direction: row; /* Row layout for larger screens */
-        flex-wrap: wrap; /* Allow wrapping */
+.Why_Choose_Us-step h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.Why_Choose_Us-step p {
+    font-size: 16px;
+    color: #666;
+}
+
+.Why_Choose_Us-step:hover {
+    transform: translateY(-5px);
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .Why_Choose_Us {
+        padding: 40px 0;
     }
 
-    .expertise-item {
-        flex: 1 1 45%; /* Two items per row for larger screens */
+    .Why_Choose_Us h2 {
+        font-size: 24px;
     }
 
-    .expertise-item i {
-        font-size: 3rem; /* Restore original icon size */
+    .Why_Choose_Us-steps {
+        gap: 15px;
+    }
+
+    .Why_Choose_Us-step {
+        width: 100%; /* Full-width cards on mobile */
+        margin: 10px 0;
+        padding: 15px;
+    }
+
+    .Why_Choose_Us-icon {
+        font-size: 36px;
+    }
+
+    .Why_Choose_Us-step h3 {
+        font-size: 18px;
+    }
+
+    .Why_Choose_Us-step p {
+        font-size: 15px;
     }
 }
 
 
+/* Client Bridge Section */
+.clientbridge {
+    background-color: #f9f9f9;
+    padding: 60px 0; /* Reduced padding for mobile */
+}
 
-/* About Us Section */
-.about {
-    padding: 50px 20px;
+.clientbridge_container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.clientbridge img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 15px;
+}
+
+.clientbridge-steps {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Adds uniform spacing between steps */
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.clientbridge-step {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    width: 28%; /* Default width for larger screens */
+    margin: 10px;
+}
+
+.clientbridge-step:hover {
+    transform: translateY(-5px); /* Adds a subtle hover effect */
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .clientbridge {
+        padding: 40px 0; /* Reduced padding for mobile */
+    }
+
+    .clientbridge img {
+        width: 50px; /* Reduced image size for mobile */
+        height: 50px;
+        margin-bottom: 10px;
+    }
+
+    .clientbridge-steps {
+        gap: 15px;
+    }
+
+    .clientbridge-step {
+        width: 100%; /* Full-width cards for mobile */
+        padding: 15px;
+        margin: 0 auto; /* Center-align cards on mobile */
+    }
+}
+
+
+/* Our Expertise Section */
+.our-expertise {
+    padding: 60px 0;
     background-color: #fff;
 }
 
+.expertise-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1200px; /* Centering the grid container */
+    margin: 0 auto; /* Ensures equal spacing on both sides */
+}
+
+.expertise-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.expertise-item i {
+    font-size: 40px;
+    color: #ff6f61;
+}
+
+.expertise-item p {
+    font-size: 16px;
+    color: #666;
+}
+
+.expertise-item:hover {
+    transform: translateY(-3px);
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .our-expertise {
+        padding: 40px 0;
+    }
+
+    .expertise-content {
+        grid-template-columns: 1fr; /* Single-column layout on mobile */
+        gap: 20px;
+        max-width: 90%; /* Slightly narrower on mobile for better fit */
+    }
+
+    .expertise-item {
+        padding: 15px;
+    }
+
+    .expertise-item i {
+        font-size: 35px;
+    }
+
+    .expertise-item p {
+        font-size: 15px;
+    }
+}
+
+
+
+/* About Us Section for Mobile */
+.about {
+    padding: 40px 0;
+    background-color: #f9f9f9;
+}
+
 .about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    gap: 20px;
 }
 
 .about-text ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .about-text ul li {
     margin-bottom: 10px;
     font-weight: 600;
+    font-size: 14px; /* Adjusted font size for mobile readability */
 }
 
 .founder-bio img {
-    width: 100px;
+    width: 100px; /* Reduced size for mobile */
     border-radius: 50%;
     margin-bottom: 15px;
 }
@@ -317,75 +619,53 @@ pointer-particles {
     line-height: 1.5;
 }
 
+@media (min-width: 600px) {
+    .about-content {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+    }
 
-/* Process Section */
-.process {
-    background-color: #f9f9f9;
-    padding: 80px 0;
+    .founder-bio img {
+        width: 150px; /* Restore larger size for tablets and above */
+    }
 }
-
-.process h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 32px;
-}
-
-/* Vertically stack process steps */
-.process-steps {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center;    /* Center the items */
-    gap: 20px;              /* Add some space between each item */
-}
-
-.process-step {
-    width: 90%;             /* Full width with some margin */
-    max-width: 500px;       /* Max width to keep it manageable on larger screens */
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
-
-.process-icon {
-    font-size: 50px;
-    color: #ff6f61;
-    margin-bottom: 20px;
-}
-
-.process-step h3 {
-    margin-bottom: 15px;
-    font-size: 22px;
-}
-
-.process-step p {
-    font-size: 16px;
-    color: #666;
-}
-
-/* .process-step:hover {
-    transform: translateY(-10px);
-} */
 
 
 /* CTA Section */
 .cta {
     background-color: #222;
     color: #fff;
-    padding: 50px 20px;
+    padding: 40px 0;
     text-align: center;
 }
 
 .cta h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
 .cta p {
     font-size: 16px;
     margin-bottom: 20px;
+}
+
+.cta .primary-button {
+    background-color: #ff6f61;
+}
+
+.cta .primary-button:hover {
+    background-color: #ff4e40;
+}
+
+.cta .secondary-button {
+    background-color: #fff;
+    color: #333;
+}
+
+.cta .secondary-button:hover {
+    background-color: #ff6f61;
+    color: #fff;
 }
 
 /* Footer */
@@ -397,63 +677,34 @@ pointer-particles {
 }
 
 .footer-logo img {
-    width: 150px;
-    margin-bottom: 10px;
+    width: 100px;
+    margin-bottom: 15px;
 }
 
-.footer-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
+.footer-nav, .footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-.footer-links ul li {
-    margin-bottom: 10px;
+.footer-nav a, .footer-social a {
+    color: #ccc;
+    font-size: 14px;
+    transition: color 0.3s;
 }
 
-.footer-links ul li a {
-    color: #fff;
+.footer-nav a:hover, .footer-social a:hover {
+    color: #ff6f61;
 }
 
-.footer-social a {
-    margin: 0 5px;
-    color: #fff;
-    font-size: 20px;
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .navigation ul {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
-.footer-newsletter input[type="email"] {
-    width: 70%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-}
-
-.footer-newsletter button {
-    padding: 10px;
-    background-color: #ff6f61;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.footer-legal ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-}
-
-.footer-legal ul li {
-    display: inline;
-    margin: 0 5px;
-}
-
-.footer-legal p {
-    font-size: 12px;
-    margin-top: 10px;
-    color: #bbb;
-}
 
     </style>
 
@@ -476,285 +727,216 @@ src="https://www.facebook.com/tr?id=1732594887550385&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 </head>
 <body>
-  
-  <!--header section 
-    <header>
-    <div class="logo">My Logo</div>
-    <div class="hamburger">&#9776;</div>
-</header>
-
-<nav id="menu">
-    <a href="#about">About Us <!-- <span class="dropdown-icon">&#9660;</span> 
-  </a>
-    <a href="#expertise">Expertise <!-- <span class="dropdown-icon">&#9660;</span></a>
-    <a href="#process">Process <!-- <span class="dropdown-icon">&#9660;</span> </a>
-    <a href="#schedule-call">Schedule a Call</a>
-</nav>  -->
-  
-  
-    <!-- Hero Section -->
-    <section id="hero-section" class="hero">
-        <pointer-particles></pointer-particles>
-        <div class="hero-content">
-            <h1>Eliminate Guesswork and Drive Real Results Online</h1>
-            <p>Precision Strategies to Navigate the Digital Landscape</p>
-            <a href="https://calendly.com/contact-alenwrites/consultation-call" class="primary-button" target="_blank">Schedule a Call</a>
-            <a href="mailto:contact@alenwrites.pro" class="secondary-button">Contact Us</a>
+   <!-- Header
+    <header class="header">
+            <div class="container">
+            <div class="logo">
+                <img src="images/your-logo.png" alt="Your Company Name Logo">
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#our-expertise">Expertise</a></li>
+                    <li><a href="#process">Process</a></li>
+                   <!-- <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li> 
+                </ul>
+            </nav>
+            <a href="#contact" class="cta-button">Schedule a Call</a>
         </div>
-    </section>
-  <script>
-      class PointerParticle {
-  constructor(spread, speed, component) {
-    const { ctx, pointer, hue } = component;
+    </header>  -->
 
-    this.ctx = ctx;
-    this.x = pointer.x;
-    this.y = pointer.y;
-    this.mx = pointer.mx * 0.1;
-    this.my = pointer.my * 0.1;
-    this.size = Math.random() + 1; // Consistent size for all devices
-    this.decay = 0.01; // Same decay rate
-    this.speed = speed * 0.08; // Consistent speed
-    this.spread = spread * this.speed;
-    this.spreadX = (Math.random() - 0.5) * this.spread - this.mx;
-    this.spreadY = (Math.random() - 0.5) * this.spread - this.my;
-    this.color = `hsl(${hue}deg 90% 60%)`; // Consistent color hue
-  }
+   <!-- Hero Section -->
+<section id="hero-section" class="hero">
+    <div class="hero-content">
+        <!-- Preheadline -->
+        <div class="preheadline">For Coaches, Consultants, agencies, And service-based businesses Looking to Build A Personal Brand That generates 5-10 qualified sales calls/day...</div>
+        
+        <!-- Main headline -->
+        <h1>Want Me to Build a Custom End-to-End Marketing System That Can Book You 5 to 10 Qualified Sales Calls Per Day Without Compromising Your Existing Business or Marketing Efforts?</h1>
+        
+        <!-- Subheading -->
+        <div class="subheading">
+        Watch The Video Below To Learn How I Can build the ClientBridge Framework For Your Business, Blending Content And Low-Cost Paid Ads To Turn Strangers Into Sales Calls That Show-Up, Buy, And Pay In Full — Even In Today's Trust Recession.
+        </div>
+        
+        <!-- Responsive YouTube video embed -->
+        <div class="hero-video-wrapper">
+            <iframe 
+              
+            src="https://www.youtube.com/embed/yhWjZkd_ZQg?si=2cNgxKtuo7lY6bp7" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+            </iframe>
+        </div>
+        
+        <!-- Call-to-action buttons -->
+        <a href="https://calendly.com/contact-alenwrites/consultation-call" class="primary-button" target="_blank">Schedule a Demo Call</a>
+        <a href="https://drive.google.com/drive/folders/1EAB76m9rxpw-ZTp4LQvbPhNlDWWxoqUq?usp=sharing" class="secondary-button">Download Explainer PDFs</a>
+    </div>
+</section>
 
-  draw() {
-    this.ctx.fillStyle = this.color;
-    this.ctx.beginPath();
-    this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    this.ctx.fill();
-  }
-
-  collapse() {
-    this.size -= this.decay;
-  }
-
-  trail() {
-    this.x += this.spreadX * this.size;
-    this.y += this.spreadY * this.size;
-  }
-
-  update() {
-    this.draw();
-    this.trail();
-    this.collapse();
-  }
-}
-
-class PointerParticles extends HTMLElement {
-  static register(tag = "pointer-particles") {
-    if ("customElements" in window) {
-      customElements.define(tag, this);
-    }
-  }
-
-  static css = `
-    :host {
-      display: block;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-  `;
-
-  constructor() {
-    super();
-    this.canvas;
-    this.ctx;
-    this.fps = 60; // Consistent FPS for all devices
-    this.msPerFrame = 1000 / this.fps;
-    this.timePrevious;
-    this.particles = [];
-    this.pointer = {
-      x: 0,
-      y: 0,
-      mx: 0,
-      my: 0
-    };
-    this.hue = 0; // Consistent hue changes for all devices
-  }
-
-  connectedCallback() {
-    const canvas = document.createElement("canvas");
-    const sheet = new CSSStyleSheet();
-
-    this.shadowroot = this.attachShadow({ mode: "open" });
-
-    sheet.replaceSync(PointerParticles.css);
-    this.shadowroot.adoptedStyleSheets = [sheet];
-
-    this.shadowroot.append(canvas);
-
-    this.canvas = this.shadowroot.querySelector("canvas");
-    this.ctx = this.canvas.getContext("2d");
-    this.setCanvasDimensions();
-    this.setupEvents();
-    this.timePrevious = performance.now();
-    this.animateParticles();
-  }
-
-  createParticles(event, { count, speed, spread }) {
-    this.setPointerValues(event);
-
-    for (let i = 0; i < count; i++) {
-      this.particles.push(new PointerParticle(spread, speed, this));
-    }
-  }
-
-  setPointerValues(event) {
-    const rect = this.canvas.getBoundingClientRect();
-    this.pointer.x = (event.touches ? event.touches[0].clientX : event.clientX) - rect.left;
-    this.pointer.y = (event.touches ? event.touches[0].clientY : event.clientY) - rect.top;
-    this.pointer.mx = event.movementX || 0;
-    this.pointer.my = event.movementY || 0;
-  }
-
-  setupEvents() {
-    const parent = this.parentNode;
-
-    // Apply the same events for mobile and desktop (click and move)
-    parent.addEventListener("click", (event) => {
-      this.createParticles(event, {
-        count: 300, // Consistent particle count for both devices
-        speed: Math.random() + 1,
-        spread: Math.random() + 50
-      });
-    });
-
-    parent.addEventListener("mousemove", (event) => {
-      this.createParticles(event, {
-        count: 20, // Consistent count during pointer move
-        speed: this.getPointerVelocity(event),
-        spread: 1
-      });
-    });
-
-    window.addEventListener("resize", () => this.setCanvasDimensions());
-  }
-
-  getPointerVelocity(event) {
-    const a = event.movementX || 0;
-    const b = event.movementY || 0;
-    const c = Math.floor(Math.sqrt(a * a + b * b));
-
-    return c;
-  }
-
-  handleParticles() {
-    for (let i = 0; i < this.particles.length; i++) {
-      this.particles[i].update();
-
-      if (this.particles[i].size <= 0.1) {
-        this.particles.splice(i, 1);
-        i--;
-      }
-    }
-  }
-
-  setCanvasDimensions() {
-    const rect = this.parentNode.getBoundingClientRect();
-    this.canvas.width = rect.width;
-    this.canvas.height = rect.height;
-  }
-
-  animateParticles() {
-    requestAnimationFrame(() => this.animateParticles());
-
-    const timeNow = performance.now();
-    const timePassed = timeNow - this.timePrevious;
-
-    if (timePassed < this.msPerFrame) return;
-
-    const excessTime = timePassed % this.msPerFrame;
-
-    this.timePrevious = timeNow - excessTime;
-
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.hue = this.hue > 360 ? 0 : (this.hue += 3); // Consistent hue change
-
-    this.handleParticles();
-  }
-}
-
-PointerParticles.register();
-  </script>
-  
-  <!-- pain points -->
-  <div class="container">
+    <!-- pain points -->
+  <div class="pain-point-container">
     <h2 style= "text-align: center;
     margin-bottom: 40px;
-    font-size: 32px; margin-top: 40px;" >Are You Experiencing Any Of This?</h2>
+    font-size: 28px; margin-top: 40px;" >Are You Experiencing Any Of This?</h2>
   <div class="card-container">
         <div class="card">
             <img src="https://i.ibb.co/rxm4Lvy/tick.png" alt="Icon" style="background-color: #ff6f61; border-radius: 50%; padding: 10px;">
-            <h3>Struggling to Turn Leads into Customers?</h3>
-            <p>You’re investing in marketing, but the results just aren’t there. Your ads, emails, and landing pages aren’t converting like you expected. Imagine the impact if your content truly spoke to your potential customers and drove them to take action.</p>
+            <h3 >Stuck as the Bottleneck</h3> 
+            <p>You’re trapped in the center of every decision, every call, every marketing tweak. Your business relies on you to function, leaving you feeling exhausted and stretched thin. You know scaling is impossible when you’re the one holding everything together.</p>
         </div>
         <div class="card">
             <img src="https://i.ibb.co/rxm4Lvy/tick.png" alt="Icon" style="background-color: #ff6f61; border-radius: 50%; padding: 10px;">
-            <h3>Frustrated by Ineffective Ad Creative?</h3>
-            <p>Are your ads failing to capture attention or drive action? If your visuals and messaging aren’t engaging, your audience might not even notice your ads, let alone act on them.</p>
+            <h3>An Unpredictable Sales Pipeline</h3>
+            <p>Your revenue depends on inconsistent leads and unpredictable sales calls, leading to stress, frustration, and unsteady growth. Without a streamlined system that reliably attracts high-quality prospects, you’re forced to spend more time (and money) just to hit revenue goals.</p>
         </div>
         <div class="card">
             <img src="https://i.ibb.co/rxm4Lvy/tick.png" alt="Icon" style="background-color: #ff6f61; border-radius: 50%; padding: 10px;">
-            <h3>Confused by Inadequate Tracking and Analytics?</h3><br>
-            <p>Are you missing crucial insights about your ad performance? Without the right data, it’s hard to pinpoint what’s working and what’s not, leaving you in the dark about how to improve your campaigns.</p>
+            <h3>Unqualified Leads, Wasted Calls</h3>
+            <p>Most of the calls on your calendar are with unqualified prospects who aren’t serious buyers. The time you’re spending with unfit leads drains your energy and brings you little to no return, while the clients you do want remain out of reach.</p>
+        </div>
+        <div class="card">
+            <img src="https://i.ibb.co/rxm4Lvy/tick.png" alt="Icon" style="background-color: #ff6f61; border-radius: 50%; padding: 10px;">
+            <h3 >Reliance on a Single Sales Channel that Isn’t Working</h3>  
+            <p>You’re putting all your efforts into one or two sales channels, yet they’re not moving the needle. With outdated or piecemeal strategies, you’re leaving potential revenue on the table and missing out on the consistent lead flow that an integrated approach could bring.</p>
+        </div>
+        <div class="card">
+            <img src="https://i.ibb.co/rxm4Lvy/tick.png" alt="Icon" style="background-color: #ff6f61; border-radius: 50%; padding: 10px;">
+            <h3>Underperforming Team and Agency Support</h3>
+            <p>Whether it’s your internal team or external agencies, the results they’re delivering don’t match the investment. Miscommunication, lack of expertise, or half-hearted strategies mean your business isn’t progressing as it should, leaving you frustrated and constantly filling in the gaps.</p>
+        </div>
+        <div class="card">
+            <img src="https://i.ibb.co/rxm4Lvy/tick.png" alt="Icon" style="background-color: #ff6f61; border-radius: 50%; padding: 10px;">
+            <h3>No Trust-Building System Before the Call</h3>
+            <p>You’re forced to rely on the sales call to establish trust, but today’s buyers need to trust you before they even consider booking a call. Without a cohesive system that nurtures trust at each touchpoint, you’re losing high-value leads and facing no-shows, hesitations, and lost deals.</p>
         </div>
     </div>
     </div>
+
+    <!-- Why_Choose_Us Section -->
+    <section id="Why_Choose_Us" class="Why_Choose_Us">
+        <div class="Why_Choose_Us_container">
+            <h2 style= "text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px; margin-top: 40px;">Why Choose Me?</h2>
+   
+    <p style= "text-align: left;
+    margin-bottom: 40px;
+    font-size: 16px; margin-top: 40px;">In today’s competitive market, having a great service isn’t enough. You need a marketing system that consistently delivers ready-to-buy clients directly to your calendar. The ClientBridge Framework is designed specifically for service-based businesses like yours to drive qualified leads without the hassle.</p>
+
+    <p style= "text-align: left;
+    margin-bottom: 40px;
+    font-size: 16px; margin-top: 40px;">My done-for-you marketing system includes everything you need to attract, nurture, and convert leads—all tailored to your business’s unique needs.</p>
+            <div class="Why_Choose_Us-steps">
+                <div class="Why_Choose_Us-step">
+                    <i class="fas fa-project-diagram Why_Choose_Us-icon"></i>
+                    <h3>End-to-End Solution</h3>
+                    <p>Custom sales funnel design, ad copy, email campaigns, video sales letters, and more.</p>
+                </div>
+                <div class="Why_Choose_Us-step">
+                    <i class="fas fa-bullseye Why_Choose_Us-icon"></i>
+                    <h3>Qualified Leads Only</h3>
+                    <p>I use targeted advertising and retargeting to ensure leads are ready to book a call.</p>
+                </div>
+                <div class="Why_Choose_Us-step">
+                    <i class="fas fa-award Why_Choose_Us-icon"></i>
+                    <h3>Proven Results</h3>
+                    <p>The Clientbridge Framework is modeled after the exact frameworks used by industry leaders such as Ryan Pineda, Jeremy Miner, and Ali Abdaal.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
   
+     <!-- The ClientBridge Framework – How It Works -->
+    <section id="Why_Choose_Us" class="clientbridge">
+        <div class="clientbridge_container">
+            <h2 style= "text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px; margin-top: 40px;">My three-step process is built to maximize lead quality and consistency.</h2>
+   
+    
+
+    
+            <div class="clientbridge-steps">
+                <div class="clientbridge-step">
+                    <img src="https://i.ibb.co/zRNrmvg/number-1.png" alt="Icon" style="background-color: #ff6f61; border-radius: 50%; "><!-- Step 1 -->
+                    <h3>Targeted Lead Attraction</h3>
+                    <p>I write high-converting ad copy, video sales letters, and social media scripts tailored specifically to your ideal client. No generic templates—everything is custom-built to resonate and compel action.</p>
+                </div>
+                <div class="clientbridge-step">
+                    <img src="https://i.ibb.co/4tmpXRy/number-2.png" alt="Icon" style="background-color: #ff6f61; border-radius: 50%; "> <!-- Step 2 -->
+                    <h3>Automated Lead Nurturing</h3>
+                    <p>Advanced email marketing sequences and sales funnels educate and nurture your leads, moving them closer to booking a call. By the time they reach you, they’re primed for that final conversation.</p>
+                </div>
+                <div class="clientbridge-step">
+                    <img src="https://i.ibb.co/WxbTHPq/number-3.png" alt="Icon" style="background-color: #ff6f61; border-radius: 50%; "> <!-- Step 3 -->
+                    <h3>Predictable Sales Calls</h3>
+                    <p>My Facebook ad management targets and retargets interested prospects, driving them to a conversion-optimized landing page. With tracking software and automation, you’ll never worry about an empty calendar again.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
 
     <!-- Our Expertise Section -->
     <section id="our-expertise" class="our-expertise">
         <div class="container">
-            <h2 id="expertise" style= "text-align: center;
+            <h2 style= "text-align: center;
     margin-bottom: 40px;
-    font-size: 32px; margin-top: 40px; ">Our Expertise</h2>
+    font-size: 28px; margin-top: 40px;">Everything You Need to Scale Your Business – All in One Done-For-You Solution</h2>
             <div class="expertise-content">
                 <div class="expertise-item">
-                    <i class="fas fa-laptop-code"></i>
-                    <p><strong>Website Copywriting & SEO Optimization:</strong>  Your website is the cornerstone of your online presence. We craft clear, persuasive, and SEO-optimized web copy that tells your brand’s story while boosting your site's visibility and driving conversions.</p>
+                    <i class="fas fa-chart-line"></i>
+                    <p><strong>Custom Sales Funnel:</strong> My tailored sales funnels convert visitors into high-quality leads, targeting and qualifying the right audience from the outset. Spend more time with prospects who are genuinely ready to buy.</p>
                 </div>
                 <div class="expertise-item">
-                    <i class="fa fa-pencil-alt"></i>
-                    <p><strong>Content Strategy & Blogging:</strong> Consistent, high-quality content is key to building trust and authority. We develop comprehensive content strategies and write compelling blog posts that keep your audience engaged and coming back for more.</p>
+                    <i class="fas fa-video"></i>
+                    <p><strong>Engaging Content and Video Sales Letters (VSLs):</strong> I write compelling content scripts and VSLs that resonate with your target market, building trust and addressing their needs. These messages are designed to prompt action, priming leads before they even speak with you.</p>
                 </div>
                 <div class="expertise-item">
-                    <i class="fa fa-envelope-open-text"></i>
-                    <p><strong>Email Marketing Campaigns:</strong> Email remains one of the most powerful tools for nurturing leads and increasing sales. We create compelling, action-oriented email copy, from welcome sequences to promotions, that engages readers and drives conversions.</p>
+                    <i class="fas fa-envelope-open-text"></i>
+                    <p><strong>Automated Email Campaigns and Lead Nurturing:</strong> My email campaigns educate and nurture leads automatically, ensuring they’re engaged and informed. By the time they reach you, they’re familiar with your brand and ready for a meaningful sales conversation.</p>
                 </div>
                 <div class="expertise-item">
-                    <i class="fas fa-tags"></i>
-                    <p><strong>Product Descriptions:</strong>Great products deserve equally great descriptions. We write clear, engaging, and SEO-friendly product descriptions that highlight key features and benefits, making them appealing to potential buyers and improving search visibility.</p>
+                    <i class="fas fa-bullhorn"></i>
+                    <p><strong>Facebook Ad Management:</strong> Generate a steady stream of qualified leads through expertly managed Facebook ad campaigns. From ad creation to audience targeting and optimization, I handle everything to ensure your ad spend yields high-quality prospects.</p>
                 </div>
                 <div class="expertise-item">
-                    <i class="fa fa-bullhorn"></i>
-                    <p><strong>Social Media Copywriting & Ad Management:</strong> We craft engaging, brand-aligned copy for your social media channels, ensuring your message resonates across platforms. In addition, we create and manage high-converting Facebook and Instagram ads that target the right audience, driving engagement, traffic, and sales.</p>
+                    <i class="fas fa-chart-pie"></i>
+                    <p><strong>Real-Time Tracking Software:</strong> I use advanced tracking software to provide real-time insights into campaign performance, helping you see what’s working and where to optimize, so you can make data-driven decisions that improve ROI.</p>
+
                 </div>
                 <div class="expertise-item">
-                    <i class="fa fa-chart-line"></i>
-                    <p><strong>SEO & PPC Copywriting:</strong> Our SEO copywriting helps you rank higher on search engines, while our PPC (pay-per-click) ad copy drives instant results. We combine creative writing with digital marketing insights to create compelling content that attracts organic traffic and gets the most out of your paid advertising campaigns.</p>
+                    <i class="fas fa-cogs"></i>
+                    <p><strong>Automation Software for Seamless Lead Nurturing:</strong> Every touchpoint, from lead capture to follow-up emails, is managed through advanced automation tools I use, ensuring consistent communication with your leads without manual effort.</p>
                 </div>
             </div>
+            
         </div>
     </section>
+
 
     <!-- About Us Section -->
     <section id="about" class="about">
         <div class="container">
             <h1 style= "text-align: center;
     margin-bottom: 40px;
-    font-size: 32px; margin-top: 40px;">About Us</h1>
+    font-size: 28px; margin-top: 40px;">About Me</h1>
             <div class="about-content">
                 <div class="about-text"><br>
-                    <p>Welcome to Alenwrites, a digital marketing service dedicated to helping brands establish and grow their online presence. I’m Alen, the sole strategist and creative force behind Alenwrites, working closely with each client to craft tailored strategies that drive engagement and success. With a focus on personal attention and customized solutions, I aim to provide a level of service that large agencies simply can’t offer.</p><br>
+                    <p>Hi, I’m Alen. While I may be new to the industry, I’ve dedicated myself to mastering the art of building effective marketing systems for businesses. After extensive learning and hands-on practice, I’ve developed a done-for-you marketing system that helps businesses generate 5 to 10 qualified sales calls per day. From crafting compelling ad copy to managing Facebook ad campaigns, I’ve honed the skills needed to bring qualified leads directly to you.</p><br>
 
-</p>At Alenwrites, I don’t believe in one-size-fits-all approaches. Every brand has its own story, and I’m here to help you tell yours effectively through strategies that include search engine optimization, social media marketing, content creation, and paid advertising. I take the time to understand your business goals and target audience, ensuring that every campaign is designed to resonate and deliver results.</p><br>
+</p>I know how frustrating it can be to struggle with marketing efforts that don’t yield results. That’s why I created the ClientBridge Framework—a comprehensive marketing system designed to automate your lead generation and ensure you’re always booked with clients who are ready to buy. I handle all the technical work, so you can focus on closing sales.</p><br>
 
-<p>Working as a solo digital marketing professional allows me to offer a unique blend of flexibility, agility, and personal commitment to your brand’s success. From strategy development to execution, you’ll have a dedicated partner by your side, focused on turning your digital presence into a key driver of growth and engagement.</p><br>
+<p>Even though I’m just starting out, I’m committed to helping businesses grow by providing them with a personalized, results-driven system tailored to their needs. My mission is to help you stop chasing leads and start closing them with a marketing system that works.</p><br>
+
 
                    
                 </div>
@@ -762,11 +944,14 @@ PointerParticles.register();
         </div>
     </section>
 
-  
-<!-- Process Section -->
+    
+    
+<!-- Process Section 
     <section id="process" class="process">
         <div class="container">
-            <h2>Our Process</h2>
+            <h2 style= "text-align: center;
+    margin-bottom: 40px;
+    font-size: 32px; margin-top: 40px;">Our Process</h2>
             <div class="process-steps">
                 <div class="process-step">
                     <i class="fa fa-bullseye process-icon"></i>
@@ -783,98 +968,64 @@ PointerParticles.register();
                     <h3>Campaign Setup & Management</h3>
                     <p>We set up and launch your Facebook and Instagram ad campaigns based on the defined strategy. This includes selecting ad formats, setting budgets, and scheduling. We continuously monitor and manage these campaigns to ensure they run smoothly and efficiently.</p>
                 </div>
-                <div class="process-step"  >
+                <div class="process-step"; style="margin-left: 200px;" >
                     <i class="fa fa-chart-line process-icon"></i>
                     <h3>Performance Tracking & Analysis</h3>
                     <p >We track key performance metrics such as click-through rates, conversions, and ROI. By analyzing this data, we gain insights into campaign effectiveness and identify areas for improvement.</p>
                 </div>
-                <div class="process-step" >
+                <div class="process-step"; style="margin-right: 200px;">
                     <i class="fa fa-tachometer-alt process-icon"></i>
+                    
                     <h3>Optimization & Reporting</h3>
                     <p>Based on performance data, we make data-driven adjustments to optimize your ad campaigns. We provide detailed reports and insights on campaign performance, offering recommendations for future strategies to enhance results and achieve your marketing goals.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Call to Action Section -->
     <section id="cta" class="cta">
         <div class="container">
-            <h2>Ready to Elevate Your Brand?</h2>
-            <p>No obligations, just a friendly chat to discuss your needs and how we can help.</p>
-            <a href="https://calendly.com/contact-alenwrites/consultation-call" class="primary-button" target="_blank">Schedule a Call</a>
+            <h2>Don’t let another day pass with an empty calendar. Every day you delay, your competition gets stronger.</h2>
+            <p>Ready to Stop Chasing Leads and Start Closing Them? Let’s Get You Booked Solid with My Done-For-You System.</p>
+            <a href="https://calendly.com/contact-alenwrites/consultation-call" class="primary-button" target="_blank">Schedule Your Strategy Call</a>
             <!--<a href="#contact" class="secondary-button">Download Explainer PDF</a> -->
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="https://i.ibb.co/tQkG6d5/Photo-Room-20240918-185350-transformed.png" alt="Your Company Name Logo">
-                </div>
-                <div class="footer-links">
-                    <ul>
-                        <li><a href="#about">About Us</a></li>
-                       <!-- <li><a href="#expertise">Our Expertise</a></li> -->
-                       <!-- <li><a href="#portfolio">Portfolio</a></li> 
-                        <li><a href="#blog">Blog</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li> -->
-                        <li><a href="mailto: contact@alenwrites.pro">Contact Us</a></li>
-                        <!-- <li><a href="#faq">FAQs</a></li> -->
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <!--<a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a> -->
-                    <a href="https://www.instagram.com/alenwrites/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a> 
-                </div>
-                <!--<div class="footer-newsletter">
-                    <p>Sign up for our newsletter for updates and insights.</p>
-                    <form action="#">
-                        <input type="email" placeholder="Your Email Address">
-                        <button type="submit">Subscribe</button>
-                    </form>
-                </div> -->
-                <div class="footer-legal"> 
-                    <!-- <ul>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                        <li><a href="#terms">Terms of Service</a></li>
-                       <!--  <li><a href="#cookies">Cookie Policy</a></li>
-                        <li><a href="#accessibility">Accessibility Statement</a></li> 
-                    </ul> -->
-                    <p>© 2024 Alenwrites. All rights reserved.</p>
-                </div>
-            </div>
+    <div class="footer-container">
+        <!-- Logo on the left side -->
+        <div class="footer-logo">
+            <img src="https://i.ibb.co/tQkG6d5/Photo-Room-20240918-185350-transformed.png" alt="Company Logo">
         </div>
-    </footer>
-<!-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.querySelector('.hamburger');
-        const menu = document.getElementById('menu');
-        const menuItems = document.querySelectorAll('nav a');
 
-        hamburger.addEventListener('click', function() {
-            this.style.color = this.style.color === 'tomato' ? 'white' : 'tomato';
-            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-        });
+        <!-- Centered Navigation Links -->
+        <div class="footer-nav">
+            <a href="#about">About</a>
+           <!-- <a href="#testimonials">Testimonials</a> -->
+           <!-- <a href="#case-studies">Case Studies</a> -->
+           <!--<a href="#privacy-policy">Privacy Policy</a> -->
+            <a href="mailto:contact@alenwrites.pro">Contact</a>
+        </div>
 
-        menuItems.forEach(function(item) {
-            item.addEventListener('click', function(event) {
-                menuItems.forEach(function(el) {
-                    el.classList.remove('active');
-                });
-                this.classList.add('active');
-                setTimeout(() => {
-                    this.classList.remove('active');
-                }, 1000);
-            });
-        });
-    });
-</script> -->
+        <!-- Social Links on the right side -->
+        <div class="footer-social">
+            <a href="https://www.linkedin.com/in/alen-praveen?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BQ8gtdYUbQKyea6TJmLpm%2Fg%3D%3D" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/Alenwrites" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/@AlenPPraveen" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/alenwrites.pro" target="_blank"><i class="fab fa-instagram"></i></a>
+
+            </div>
+    </div>
+</footer>
 
 
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8de17a557b724725',t:'MTczMDg1ODMwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8de17a557b724725","version":"2024.10.4","r":1,"token":"dfe3a3ff1e5d48d0bd5869f26e4e13b1","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
 </body>
+
+
+
 </html>
